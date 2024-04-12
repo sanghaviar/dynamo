@@ -10,7 +10,7 @@
  ],
    "s3": [
     {
-      "aws_s3_bucket_name": "statefilebucket2134578"
+      "aws_s3_bucket_name": "statfilebucket2134578"
     }
   ]
 }
