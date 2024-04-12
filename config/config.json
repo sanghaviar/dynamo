@@ -7,5 +7,10 @@
      "attribute_name": "LockID",
      "attribute_type": "S"
    }
- ]
+ ],
+   "s3": [
+    {
+      "aws_s3_bucket_name": "statefilebucket2134578"
+    }
+  ]
 }
