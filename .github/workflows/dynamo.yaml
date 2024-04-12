@@ -6,7 +6,7 @@ on:
 
 jobs:
   terraform:
-    name: "AWS_Resource_Deployment"
+    name: "AWS_Initial_SetUp"
     runs-on: ubuntu-latest
     env:
       AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
