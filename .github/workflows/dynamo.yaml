@@ -1,0 +1,48 @@
+name: "Terraform-Apply-Infra-Release"
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  terraform:
+    name: "AWS_Resource_Deployment"
+    runs-on: ubuntu-latest
+    env:
+      AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+      AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+
+    steps:
+      - name: Checkout aws
+        uses: actions/checkout@v2
+
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v1
+
+      - name: Terraform Init
+        id: init
+        run: terraform init
+
+      - name: Terraform plan
+        id: plan
+        run: terraform plan -out=tfplan
+        continue-on-error: true
+
+      - name: Terraform Plan Status
+        if: steps.plan.outcome == 'failure'
+        run: exit 1
+
+      - name: Publish Terraform Plan Artifact
+        if: steps.plan.outcome == 'success'
+        uses: actions/upload-artifact@v2
+        with:
+          name: terraform-plan
+          path: tfplan
+      - name: Store workflow run ID and artifact name
+        id: store_workflow_info
+        run: |
+            echo "::set-output name=workflow_run_id::${{ github.run_id }}"
+            echo "::set-output name=artifact_name::terraform-plan" 
+
+#      - name: Terraform Apply
+#        run: terraform apply --auto-approve
