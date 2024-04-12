@@ -1,10 +1,8 @@
-#variable "CLIENT_ID1" {
-#  type = string
-#}
-#
-#variable "CLIENT_SECRET1" {
-#  type = string
-#}
+variable "AWS_ACCESS_KEY_ID" {
+}
+
+variable "AWS_SECRET_ACCESS_KEY" {
+}
 
 
 
