@@ -9,8 +9,8 @@ jobs:
     name: "AWS_Initial_SetUp"
     runs-on: ubuntu-latest
     env:
-      TF_VAR_AWS_ACCESS_KEY_ID: ${{ variables.AWS_ACCESS_KEY_ID }}
-      TF_VAR_AWS_SECRET_ACCESS_KEY: ${{ variables.AWS_SECRET_ACCESS_KEY }}
+      TF_VAR_AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+      TF_VAR_AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
 
     steps:
       - name: Checkout aws
